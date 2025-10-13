@@ -1,0 +1,39 @@
+@import url('bootstrap');
+@import url('bootstrap-icons');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #112436;
+}
+
+h5 {
+  color: white;
+}
+
+.jumbotron {
+  background-color: rgba(24, 81, 24, 0.701);
+  color: wheat;
+}
+
+.card-body {
+  background-color: rgba(24, 81, 24, 0.801);
+  color: wheat;
+}
+
+.card-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.origin, .status {
+  font-size: 12px;
+  color: rgb(79, 0, 0);
+  font-style: italic;
+}
+
