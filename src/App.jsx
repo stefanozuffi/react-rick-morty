@@ -9,13 +9,15 @@ function App() {
   function handleFetch(){
     axios.get(`https://rickandmortyapi.com/api/character?page=${parseInt(currentPage)}`)
     .then((res) => {
+
       setCharacters(res.data.results)
+      
     })
  }
 
   useEffect(()=> {
     handleFetch()
-  },[])
+  },[currentPage])
 
   return (
     <>
@@ -28,7 +30,7 @@ function App() {
     </header>
 
     <main>
-      <div className="jumbotron p-5 mb-4 rounded-3">
+      <div className="container jumbotron p-5 mb-4 rounded-3">
         <div className="container-fluid py-5">
           <h2 className="display-5 fw-bold">Rick and Morty</h2>
           <p className="col-md-8 fs-4">
@@ -40,7 +42,7 @@ function App() {
                   () => {
                     if (currentPage > 1 ) {
                       setCurrentPage(currentPage - 1)
-                      handleFetch()
+                      
                     }} 
                   }>
                 {'< Previous Page'}
@@ -48,7 +50,7 @@ function App() {
               <button className="btn btn-dark" onClick={
                   () => {
                     setCurrentPage(currentPage + 1)
-                    handleFetch()
+                    
               }}>
                 {'Next Page >'}
               </button>
