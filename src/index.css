@@ -16,6 +16,15 @@ h5 {
   color: white;
 }
 
+a {
+  text-decoration: none;
+  color: wheat;
+
+  &.active {
+    font-weight: 900;
+  }
+}
+
 .jumbotron {
   background-color: rgba(24, 81, 24, 0.701);
   color: wheat;
@@ -27,6 +36,20 @@ h5 {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
+}
+
+.loading {
+  margin: 20rem auto;
+  width: 10%;
+
+  h5 {
+    color: white;
+  }
+}
+
+
+.character {
+  width: 30rem;
 }
 
 .card-body {

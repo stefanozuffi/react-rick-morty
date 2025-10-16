@@ -1,0 +1,75 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { Link } from "react-router-dom"
+
+export default function HomePage() {
+    const [characters, setCharacters] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+
+  function handleFetch(){
+    axios.get(`https://rickandmortyapi.com/api/character?page=${parseInt(currentPage)}`)
+    .then((res) => {
+
+      setCharacters(res.data.results)
+      
+    })
+ }
+
+  useEffect(()=> {
+    handleFetch()
+  },[currentPage])
+
+  return (
+    <>
+
+    
+
+    <main>
+      <div className="container jumbotron p-2 pt-5 pb-5 mb-4 rounded-3">
+        <div className="container-fluid d-flex flex-column justify-content-between align-items-center g-5">
+          <h2 className="display-5 fw-bold"> Rick and Morty Characters' Encyclopedia </h2>
+          <p className="col-md-8 fs-4">
+            Rick and Morty is a popular animated sci-fi comedy series that follows the adventures of an eccentric scientist, Rick Sanchez, and his good-hearted but easily influenced grandson, Morty Smith. Together, they explore bizarre dimensions, encounter strange creatures, and navigate the complexities of family life.
+          </p>
+          <div className="jumbo-button-homepage">
+                
+              <Link className='btn btn-dark' to='/characters'>
+                Explore all the Characters!
+              </Link>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div className="container">
+        <div className="row">
+          
+          
+          {   
+            characters.map((char,i) => {
+                if (i<4) {
+                    return (<div className="col col-sm-6 col-md-4 col-lg-3 mb-3" key={char.id}>
+      
+                <div className="card h-100">
+                    <img className="card-image" src={char.image}></img>
+                    <div className="card-body p-4">
+                        <h3 className="card-name mb-3">{char.name.toUpperCase()}</h3>
+                        <span className={`card-text d-block badge bg-dark`}>{char.species}</span>
+                        <span className="card-text origin mt-2 d-block">{char.origin.name}</span>
+                    </div>
+                </div> 
+              </div>
+            )}
+            }
+                
+              
+          )}
+        </div>
+      </div>
+    </main>
+      
+      
+    </>
+  )
+}
