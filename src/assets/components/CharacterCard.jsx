@@ -18,7 +18,7 @@ export default function CharacterCard({char}) {
                         <span className={`card-text d-block badge bg-dark`}>{char.species}</span>
                         <div className="bottom-ctn d-flex justify-content-between align-items-center">
                             <span className="card-text origin mt-2 d-block">{char.origin.name}</span>
-                            <div className="mt-2" onClick={() => toggleFav(char.id)}>
+                            <div className="heart-ctn mt-2" onClick={() => toggleFav(char.id)}>
                                 {!isFavourite(char.id) && <span>♡</span>}
                                 {isFavourite(char.id) && <span>❤️</span>}
                             </div>

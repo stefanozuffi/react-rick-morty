@@ -12,6 +12,7 @@ import axios from "axios"
 function App() {
   const [characters, setCharacters] = useState([]) //Objects list
   const [currentPage, setCurrentPage] = useState(1)
+  const [lastPage, setLastPage] = useState(0)
   const [favourites, setFavourites] = useState([]) //IDs list
 
   function handleFetch(){
@@ -19,6 +20,7 @@ function App() {
     .then((res) => {
 
       setCharacters(res.data.results)
+      setLastPage(res.data.info.pages)
       
     })
  }
@@ -46,7 +48,7 @@ function App() {
 
 
   return(
-    <FavouriteCTX.Provider value={{characters, currentPage, favourites, setFavourites, isFavourite, toggleFav, handleFetch}}>
+    <FavouriteCTX.Provider value={{characters, currentPage, setCurrentPage, lastPage, setLastPage, favourites, setFavourites, isFavourite, toggleFav, handleFetch}}>
         <BrowserRouter>
           <Routes>
             <Route element={<DefaultLayout/>}>

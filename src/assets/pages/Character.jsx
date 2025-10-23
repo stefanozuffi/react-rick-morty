@@ -12,16 +12,17 @@ export default function Character() {
     const [loading, setLoading] = useState(null)
     const [err, setErr] = useState(null)
     const navigate = useNavigate()
-    const { isFavourite, toggleFav } = useContext(FavouriteCTX)
 
-    const endpoint = `https://rickandmortyapi.com/api/character/${id}`
+    const [pageBTNs, setPageBTNs] = useState([])
+    //const navigate = useNavigate()
+    const { isFavourite, toggleFav, currentPage, setCurrentPage, lastPage } = useContext(FavouriteCTX)
+
 
     useEffect(() => {
         setLoading(true)
         setErr(false)
         setTimeout( ()=> {
-            fetchData(endpoint)
-            setLoading(false)
+            fetchData(`https://rickandmortyapi.com/api/character/${id}`)
         }, 500)
         
     },[id])
@@ -30,13 +31,16 @@ export default function Character() {
         axios.get(endpoint)
         .then(res => {
             if (res.data.id) {
-                console.log(res.data)
-            setCharacter(res.data)
+                
+                setCharacter(res.data)
+                setLoading(false)
+
             } else {
                 setErr(true)
+                setLoading(false)
             }
             
-            }
+        }
         ).catch(err => {
             console.log(err)
             setErr(true)
@@ -64,8 +68,8 @@ export default function Character() {
             
             </div>
         
-      </div>
-        <div className="character-wrapper d-flex flex-column align-items-center gap-4 mb-5">
+        </div>
+        <div className ="character-wrapper d-flex flex-column align-items-center gap-4 mb-5">
         
        
             {character && !err && !loading && 
@@ -81,7 +85,7 @@ export default function Character() {
                                 <span className="card-text origin mt-2 d-block">{character.origin.name}</span>
                                 <div className="bottom-ctn d-flex justify-content-between align-items-center">
                                     <span className="card-text last-seen mt-2 d-block">LAST SEEN: {character.location.name}</span>
-                                    <div className="mt-2" onClick={() => toggleFav(character.id)}>
+                                    <div className="heart-ctn mt-2" onClick={() => toggleFav(character.id)}>
                                             {!isFavourite(character.id) && <span>♡</span>}
                                             {isFavourite(character.id) && <span>❤️</span>}
                                     </div>
@@ -94,8 +98,8 @@ export default function Character() {
                     </div>
             
         
-                </div>
-                }
+                </div>}
+
                 {
                     loading && 
                 <div className="loading">
@@ -118,16 +122,55 @@ export default function Character() {
                     
                 }
 
-            <div className="d-flex gap-3">
-                
-                <Link className="btn btn-primary" to={`/characters/${parseInt(id)-1}`}>
-                    {'<'}
-                </Link>
-                <Link className="btn btn-primary" to={`/characters/${parseInt(id)+1}`}>
-                    {'>'}
-                </Link>
-            </div>
+            
+            
         </div>
+{/* Component for change of character and page*/}
+            <div className="btns-ctn d-flex flex-column align-items-center justify-content-center gap-3">
+                    <div className="change-char">
+                            <div className="d-flex justify-content-center gap-3">
+                                
+                                <Link className="btn btn-primary" to={`/characters/${parseInt(id)-1}`}>
+                                    {'<'}
+                                </Link>
+                                <Link className="btn btn-primary" to={`/characters/${parseInt(id)+1}`}>
+                                    {'>'}
+                                </Link>
+                            </div>
+                            <div className="mt-3 fst-italic">
+                                <Link>
+                                    {`page ${currentPage}, character n-${id}`}
+                                </Link>
+                            </div>
+                    </div>
+                    <div className="change-page d-flex gap-4 p-5">
+
+                        <button className="btn btn-dark" onClick={
+                            () => {
+                                if (currentPage > 1 ) {
+                                setCurrentPage(currentPage - 1)
+                                
+                                }} 
+                            }>
+                            <i className="bi bi-caret-left-fill"></i>
+                        </button>
+
+                                {/* PAGE NUMBERED BUTTONS */}
+
+
+                                {/* END PAGE NUMBERED */}
+                        <button className="btn btn-dark" onClick={
+                            () => {
+                                if ( currentPage >= lastPage ) {
+                                setCurrentPage(currentPage + 1)
+                                }
+                                
+                        }}>
+                            <i className="bi bi-caret-right-fill"></i>
+                        </button>
+                    </div>
+                    
+            </div>
         </main>
     )
 }

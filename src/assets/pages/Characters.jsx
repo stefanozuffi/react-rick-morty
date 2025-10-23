@@ -4,7 +4,7 @@ import axios from "axios"
 import FavouriteCTX from "../context/FavouritesCTX"
 
 export default function Characters() {
-  const { characters, handleFetch, currentPage } = useContext(FavouriteCTX)
+  const { characters, handleFetch, currentPage, setCurrentPage, lastPage } = useContext(FavouriteCTX)
 
   useEffect(()=> {
     handleFetch()
@@ -35,7 +35,9 @@ export default function Characters() {
               </button>
               <button className="btn btn-dark" onClick={
                   () => {
-                    setCurrentPage(currentPage + 1)
+                    if ( currentPage >= lastPage ) {
+                      setCurrentPage(currentPage + 1)
+                    }
                     
               }}>
                 {'Next Page >'}

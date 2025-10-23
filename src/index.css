@@ -72,3 +72,11 @@ a {
   font-style: italic;
 }
 
+.heart-ctn {
+  cursor: pointer;
+}
+
+footer {
+  min-height: 15rem;
+  background-color: rgb(42, 32, 52);
+}
