@@ -9,14 +9,19 @@ import FavouriteCTX from "../context/FavouritesCTX"
 export default function Character() {
     const {id} = useParams()
     const [character, setCharacter] = useState(null)
+    const [loading, setLoading] = useState(null)
+    const [err, setErr] = useState(null)
     const navigate = useNavigate()
     const { isFavourite, toggleFav } = useContext(FavouriteCTX)
 
     const endpoint = `https://rickandmortyapi.com/api/character/${id}`
 
     useEffect(() => {
+        setLoading(true)
+        setErr(false)
         setTimeout( ()=> {
             fetchData(endpoint)
+            setLoading(false)
         }, 500)
         
     },[id])
@@ -24,12 +29,18 @@ export default function Character() {
     function fetchData(endpoint) {
         axios.get(endpoint)
         .then(res => {
-            console.log(res.data)
+            if (res.data.id) {
+                console.log(res.data)
             setCharacter(res.data)
+            } else {
+                setErr(true)
+            }
+            
             }
         ).catch(err => {
             console.log(err)
-            navigate(-1)
+            setErr(true)
+            //navigate(-1)
         }
             )
     }
@@ -57,8 +68,8 @@ export default function Character() {
         <div className="character-wrapper d-flex flex-column align-items-center gap-4 mb-5">
         
        
-                {character && 
-            <div className="container character">
+            {character && !err && !loading && 
+            <div className="container character"> 
                 <div className="row">
                     <div className="col mb-3" key={character.id}>
                         
@@ -86,7 +97,7 @@ export default function Character() {
                 </div>
                 }
                 {
-                    !character && // Default values shown
+                    loading && 
                 <div className="loading">
                     <Cardio
                       size="100"
@@ -95,6 +106,14 @@ export default function Character() {
                       color="white" 
                     />
                     <h5>...Loading</h5>
+                </div>
+                    
+                }
+                {
+                    err && 
+                <div className="error-page">
+                    <h2 style={{color: 'white'}}>404: Character not Found!</h2>
+                    <p style={{color: 'red'}}>The character id that was used is not existent in our database</p>
                 </div>
                     
                 }
