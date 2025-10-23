@@ -1,18 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import CharacterCard from "../components/CharacterCard"
 import axios from "axios"
+import FavouriteCTX from "../context/FavouritesCTX"
 
 export default function Characters() {
-    const [characters, setCharacters] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-
-  function handleFetch(){
-    axios.get(`https://rickandmortyapi.com/api/character?page=${parseInt(currentPage)}`)
-    .then((res) => {
-
-      setCharacters(res.data.results)
-      
-    })
- }
+  const { characters, handleFetch, currentPage } = useContext(FavouriteCTX)
 
   useEffect(()=> {
     handleFetch()
@@ -60,18 +52,8 @@ export default function Characters() {
           
           {   
             characters.map(char => 
-              <div className="col col-sm-6 col-md-4 col-lg-3 mb-3" key={char.id}>
-      
-                <div className="card h-100">
-                    <img className="card-image" src={char.image}></img>
-                    <div className="card-body p-4">
-                        <h3 className="card-name mb-3">{char.name.toUpperCase()}</h3>
-                        <span className={`card-text d-block badge bg-dark`}>{char.species}</span>
-                        <span className="card-text origin mt-2 d-block">{char.origin.name}</span>
-                    </div>
-                </div> 
-              </div>
-          )}
+              <CharacterCard char={char} key={char.id}/>)
+              }
         </div>
       </div>
     </main>
