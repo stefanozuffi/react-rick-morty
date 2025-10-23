@@ -17,7 +17,7 @@ export default function Character() {
     useEffect(() => {
         setTimeout( ()=> {
             fetchData(endpoint)
-        }, 3000)
+        }, 500)
         
     },[id])
 
@@ -39,22 +39,22 @@ export default function Character() {
 
         
         <div className="container jumbotron p-2 pt-5 pb-5 mb-4 rounded-3">
-        <div className="container-fluid d-flex flex-column justify-content-between align-items-center g-5">
-          <h2 className="display-5 fw-bold"> Rick and Morty Characters' Encyclopedia </h2>
-          <p className="col-md-8 fs-4">
-            Rick and Morty is a popular animated sci-fi comedy series that follows the adventures of an eccentric scientist, Rick Sanchez, and his good-hearted but easily influenced grandson, Morty Smith. Together, they explore bizarre dimensions, encounter strange creatures, and navigate the complexities of family life.
-          </p>
-          <div className="jumbo-button-homepage">
-                
-              <Link className='btn btn-dark' to='/characters'>
-                Explore all the Characters!
-              </Link>
-          </div>
-          
-        </div>
+            <div className="container-fluid d-flex flex-column justify-content-between align-items-center g-5">
+            <h2 className="display-5 fw-bold"> Rick and Morty Characters' Encyclopedia </h2>
+            <p className="col-md-8 fs-4">
+                Rick and Morty is a popular animated sci-fi comedy series that follows the adventures of an eccentric scientist, Rick Sanchez, and his good-hearted but easily influenced grandson, Morty Smith. Together, they explore bizarre dimensions, encounter strange creatures, and navigate the complexities of family life.
+            </p>
+            <div className="jumbo-button-homepage">
+                    
+                <Link className='btn btn-dark' to='/characters'>
+                    Explore all the Characters!
+                </Link>
+            </div>
+            
+            </div>
         
       </div>
-        <div className="character-wrapper">
+        <div className="character-wrapper d-flex flex-column align-items-center gap-4 mb-5">
         
        
                 {character && 
@@ -98,6 +98,16 @@ export default function Character() {
                 </div>
                     
                 }
+
+            <div className="d-flex gap-3">
+                
+                <Link className="btn btn-primary" to={`/characters/${parseInt(id)-1}`}>
+                    {'<'}
+                </Link>
+                <Link className="btn btn-primary" to={`/characters/${parseInt(id)+1}`}>
+                    {'>'}
+                </Link>
+            </div>
         </div>
         </main>
     )

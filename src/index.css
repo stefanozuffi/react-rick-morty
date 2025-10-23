@@ -30,6 +30,10 @@ a {
   color: wheat;
 }
 
+.jumbotron p {
+  color: white;
+}
+
 .card {
   border: none;
   border-radius: 10px;
