@@ -21,14 +21,23 @@ export default function Character() {
         handleFetch()
       },[currentPage])
 
-    useEffect(() => {
-        setLoading(true)
-        setErr(false)
-        setTimeout( ()=> {
-            fetchData(`https://rickandmortyapi.com/api/character/${id}`)
-        }, 500)
+      useEffect(() => {
         
-    },[id])
+        const correctPage = Math.ceil(id / 20);
+        
+        
+        if (correctPage !== currentPage) {
+            setCurrentPage(correctPage);
+        }
+        
+        setLoading(true);
+        setErr(false);
+        
+        setTimeout(() => {
+            fetchData(`https://rickandmortyapi.com/api/character/${id}`);
+        }, 500);
+        
+    }, [id]);
 
     function fetchData(endpoint) {
         axios.get(endpoint)
@@ -165,7 +174,7 @@ export default function Character() {
                                 {/* END PAGE NUMBERED */}
                         <button className="btn btn-dark" onClick={
                             () => {
-                                if ( currentPage >= lastPage ) {
+                                if ( currentPage < lastPage ) {
                                     setCurrentPage(currentPage + 1)
                                     navigate(`/characters/${parseInt(id)+20}`)
                                 }

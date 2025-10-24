@@ -35,7 +35,7 @@ export default function Characters() {
               </button>
               <button className="btn btn-dark" onClick={
                   () => {
-                    if ( currentPage >= lastPage ) {
+                    if ( currentPage < lastPage ) {
                       setCurrentPage(currentPage + 1)
                     }
                     
