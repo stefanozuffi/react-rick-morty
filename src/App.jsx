@@ -12,7 +12,7 @@ import axios from "axios"
 function App() {
   const [characters, setCharacters] = useState([]) //Objects list
   const [currentPage, setCurrentPage] = useState(1)
-  const [lastPage, setLastPage] = useState(0)
+  const [lastPage, setLastPage] = useState(1)
   const [favourites, setFavourites] = useState([]) //IDs list
 
   function handleFetch(){

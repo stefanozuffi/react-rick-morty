@@ -15,8 +15,11 @@ export default function Character() {
 
     const [pageBTNs, setPageBTNs] = useState([])
     //const navigate = useNavigate()
-    const { isFavourite, toggleFav, currentPage, setCurrentPage, lastPage } = useContext(FavouriteCTX)
+    const { isFavourite, toggleFav, currentPage, setCurrentPage, handleFetch, lastPage } = useContext(FavouriteCTX)
 
+    useEffect(()=> {
+        handleFetch()
+      },[currentPage])
 
     useEffect(() => {
         setLoading(true)
@@ -148,7 +151,8 @@ export default function Character() {
                         <button className="btn btn-dark" onClick={
                             () => {
                                 if (currentPage > 1 ) {
-                                setCurrentPage(currentPage - 1)
+                                    setCurrentPage(currentPage - 1)
+                                    navigate(`/characters/${parseInt(id)-20}`)
                                 
                                 }} 
                             }>
@@ -162,7 +166,8 @@ export default function Character() {
                         <button className="btn btn-dark" onClick={
                             () => {
                                 if ( currentPage >= lastPage ) {
-                                setCurrentPage(currentPage + 1)
+                                    setCurrentPage(currentPage + 1)
+                                    navigate(`/characters/${parseInt(id)+20}`)
                                 }
                                 
                         }}>
