@@ -2,7 +2,7 @@ import {  useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import FavouriteCTX from "../context/FavouritesCTX"
 
-export default function PageCarousel({id}) {
+export default function PageNav({id}) {
     const navigate = useNavigate()
     const { currentPage, setCurrentPage, lastPage, pageBTNs, setPageBTNs } = useContext(FavouriteCTX)
 

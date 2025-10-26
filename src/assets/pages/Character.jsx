@@ -4,7 +4,8 @@ import axios from "axios"
 import { Cardio } from 'ldrs/react'
 import 'ldrs/react/Cardio.css'
 import FavouriteCTX from "../context/FavouritesCTX"
-import PageCarousel from "../components/PageCarousel"
+import PageNav from "../components/PageNav"
+
 
 
 export default function Character() {
@@ -157,7 +158,7 @@ export default function Character() {
                             </div>
                     </div>
 
-                    <PageCarousel id={id}/>
+                    <PageNav id={id}/>
                     
             </div>
         </main>

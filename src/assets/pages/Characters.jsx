@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import CharacterCard from "../components/CharacterCard"
 import axios from "axios"
 import FavouriteCTX from "../context/FavouritesCTX"
+import PageNavNoId from "../components/PageNavNoID"
 
 export default function Characters() {
   const { characters, handleFetch, currentPage, setCurrentPage, lastPage } = useContext(FavouriteCTX)
@@ -22,26 +23,9 @@ export default function Characters() {
           <p className="col-md-8 fs-4">
             Rick and Morty is a popular animated sci-fi comedy series that follows the adventures of an eccentric scientist, Rick Sanchez, and his good-hearted but easily influenced grandson, Morty Smith. Together, they explore bizarre dimensions, encounter strange creatures, and navigate the complexities of family life.
           </p>
-          <div className="jumbo-buttons d-flex gap-3">
+          <div className="jumbo-buttons d-flex gap-1">
                 
-              <button className="btn btn-dark" onClick={
-                  () => {
-                    if (currentPage > 1 ) {
-                      setCurrentPage(currentPage - 1)
-                      
-                    }} 
-                  }>
-                {'< Previous Page'}
-              </button>
-              <button className="btn btn-dark" onClick={
-                  () => {
-                    if ( currentPage < lastPage ) {
-                      setCurrentPage(currentPage + 1)
-                    }
-                    
-              }}>
-                {'Next Page >'}
-              </button>
+              <PageNavNoId/>
           </div>
           
         </div>
