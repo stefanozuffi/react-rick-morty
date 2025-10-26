@@ -29,9 +29,9 @@ export default function PageNavNoId() {
 
 
                                 {/* PAGE NUMBERED BUTTONS */} 
-                                    <div className="central-page-btns d-flex gap-2"> 
+                                    <div className="central-page-btns"> 
                                         {pageRange?.map((page,i) => 
-                                            <button key={i} onClick={() => handlePageBtn(page)}>{page}</button> 
+                                            <button className={`${currentPage === page ? 'active' : ''}`} key={i} onClick={() => handlePageBtn(page)}>{page}</button> 
                                         )} 
                                     </div> 
 

@@ -18,13 +18,12 @@ export default function Characters() {
 
     <main>
       <div className="container jumbotron p-5 mb-4 rounded-3">
-        <div className="container-fluid py-5">
-          <h2 className="display-5 fw-bold">Rick and Morty</h2>
-          <p className="col-md-8 fs-4">
+        <div className="container-fluid">
+          <h2 className="display-5 fw-bold mb-3">Rick and Morty</h2>
+          <p className="col-md-8 fs-4 my-5">
             Rick and Morty is a popular animated sci-fi comedy series that follows the adventures of an eccentric scientist, Rick Sanchez, and his good-hearted but easily influenced grandson, Morty Smith. Together, they explore bizarre dimensions, encounter strange creatures, and navigate the complexities of family life.
           </p>
           <div className="jumbo-buttons d-flex gap-1">
-                
               <PageNavNoId/>
           </div>
           

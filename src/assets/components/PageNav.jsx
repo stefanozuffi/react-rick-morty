@@ -40,9 +40,9 @@ export default function PageNav({id}) {
                                     <i className="bi bi-caret-left-fill"></i>
                             </button>
 
-                            <button className="btn btn-dark" onClick={() => handlePageBtn(1)}> 1 </button>
+                            <button className={`number-btn ${currentPage === 1 ? 'active' : ''}`} onClick={() => handlePageBtn(1)}> 1 </button>
                             {currentPage <= 2 && 
-                                    <button className="btn btn-dark" onClick={() => handlePageBtn(2)}> 2 </button>
+                                    <button className={`number-btn ${currentPage === 2 ? 'active' : ''}`} onClick={() => handlePageBtn(2)}> 2 </button>
                             }
                             
                         </div>
@@ -52,7 +52,7 @@ export default function PageNav({id}) {
                                 {/* PAGE NUMBERED BUTTONS */} 
                                     <div className="central-page-btns d-flex gap-2"> 
                                         {pageBTNs?.map((page,i) => 
-                                            <button className="btn btn-dark" key={i} onClick={() => handlePageBtn(page)}>{page}</button> 
+                                            <button className={`${currentPage === page ? 'active' : ''}`} key={i} onClick={() => handlePageBtn(page)}>{page}</button> 
                                         )} 
                                     </div> 
 
@@ -62,9 +62,9 @@ export default function PageNav({id}) {
 
                         <div className="btns-end d-flex gap-1">
                             {currentPage >= lastPage-1 && 
-                                    <button className="btn btn-dark" onClick={() => handlePageBtn(lastPage-1)}> {lastPage-1} </button>
+                                    <button className={`number-btn ${currentPage === lastPage-1 ? 'active' : ''}`} onClick={() => handlePageBtn(lastPage-1)}> {lastPage-1} </button>
                             }
-                            <button className="btn btn-dark" onClick={() => handlePageBtn(lastPage)}> {lastPage} </button>
+                            <button className={`number-btn ${currentPage === lastPage ? 'active' : ''}`} onClick={() => handlePageBtn(lastPage)}> {lastPage} </button>
                             <button className="btn btn-dark" onClick={
                                 () => {
                                     if ( currentPage < lastPage ) {

@@ -82,9 +82,32 @@ a {
   gap: 0.5rem; 
 }
 
-.central-page-btns > *{
-  width: 3rem;
+.central-page-btns .active {
+  border: 1px solid wheat;
 }
+
+.number-btn.active {
+  border: 1px solid wheat;
+}
+
+.central-page-btns > * {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  color: wheat;
+  background-color: #112436;
+}
+
+.number-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  color: wheat;
+  background-color: #112436;
+}
+
 
 footer {
   min-height: 15rem;
