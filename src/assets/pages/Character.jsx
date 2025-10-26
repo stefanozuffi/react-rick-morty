@@ -4,6 +4,7 @@ import axios from "axios"
 import { Cardio } from 'ldrs/react'
 import 'ldrs/react/Cardio.css'
 import FavouriteCTX from "../context/FavouritesCTX"
+import PageCarousel from "../components/PageCarousel"
 
 
 export default function Character() {
@@ -13,15 +14,13 @@ export default function Character() {
     const [err, setErr] = useState(null)
     const navigate = useNavigate()
 
-    const [pageBTNs, setPageBTNs] = useState([])
-    //const navigate = useNavigate()
-    const { isFavourite, toggleFav, currentPage, setCurrentPage, handleFetch, lastPage } = useContext(FavouriteCTX)
+    const { isFavourite, toggleFav, currentPage, setCurrentPage, handleFetch, lastPage, pageBTNs, setPageBTNs } = useContext(FavouriteCTX)
 
     useEffect(()=> {
         handleFetch()
       },[currentPage])
 
-      useEffect(() => {
+    useEffect(() => {
         
         const correctPage = Math.ceil(id / 20);
         
@@ -60,6 +59,7 @@ export default function Character() {
         }
             )
     }
+
 
     return(
         <main>
@@ -139,6 +139,7 @@ export default function Character() {
         </div>
 {/* Component for change of character and page*/}
             <div className="btns-ctn d-flex flex-column align-items-center justify-content-center gap-3">
+                    
                     <div className="change-char">
                             <div className="d-flex justify-content-center gap-3">
                                 
@@ -155,34 +156,8 @@ export default function Character() {
                                 </Link>
                             </div>
                     </div>
-                    <div className="change-page d-flex gap-4 p-5">
 
-                        <button className="btn btn-dark" onClick={
-                            () => {
-                                if (currentPage > 1 ) {
-                                    setCurrentPage(currentPage - 1)
-                                    navigate(`/characters/${parseInt(id)-20}`)
-                                
-                                }} 
-                            }>
-                            <i className="bi bi-caret-left-fill"></i>
-                        </button>
-
-                                {/* PAGE NUMBERED BUTTONS */}
-
-
-                                {/* END PAGE NUMBERED */}
-                        <button className="btn btn-dark" onClick={
-                            () => {
-                                if ( currentPage < lastPage ) {
-                                    setCurrentPage(currentPage + 1)
-                                    navigate(`/characters/${parseInt(id)+20}`)
-                                }
-                                
-                        }}>
-                            <i className="bi bi-caret-right-fill"></i>
-                        </button>
-                    </div>
+                    <PageCarousel id={id}/>
                     
             </div>
         </main>

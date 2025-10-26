@@ -76,6 +76,16 @@ a {
   cursor: pointer;
 }
 
+.central-page-btns {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr); /* 42 ÷ 3 = 14 colonne */
+  gap: 0.5rem; 
+}
+
+.central-page-btns > *{
+  width: 3rem;
+}
+
 footer {
   min-height: 15rem;
   background-color: rgb(42, 32, 52);

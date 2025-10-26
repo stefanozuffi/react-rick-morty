@@ -14,6 +14,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [lastPage, setLastPage] = useState(1)
   const [favourites, setFavourites] = useState([]) //IDs list
+  const [pageBTNs, setPageBTNs] = useState([]) //Page Btns Carousel
 
   function handleFetch(){
     axios.get(`https://rickandmortyapi.com/api/character?page=${parseInt(currentPage)}`)
@@ -48,7 +49,7 @@ function App() {
 
 
   return(
-    <FavouriteCTX.Provider value={{characters, currentPage, setCurrentPage, lastPage, setLastPage, favourites, setFavourites, isFavourite, toggleFav, handleFetch}}>
+    <FavouriteCTX.Provider value={{characters, currentPage, setCurrentPage, lastPage, setLastPage, pageBTNs, setPageBTNs, favourites, setFavourites, isFavourite, toggleFav, handleFetch}}>
         <BrowserRouter>
           <Routes>
             <Route element={<DefaultLayout/>}>
